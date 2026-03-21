@@ -1,0 +1,28 @@
+$schema: https://azuremlschemas.azureedge.net/latest/pipelineJob.schema.json
+type: pipeline
+
+experiment_name: SKCT_12345_SECOM
+
+jobs:
+
+  data_prep:
+    type: command
+    code: .
+    command: python data_prep.py
+    environment: azureml:AzureML-sklearn-1.0-ubuntu20.04-py38-cpu:1
+
+  train:
+    type: command
+    code: .
+    command: python train_pipeline.py
+    environment: azureml:AzureML-sklearn-1.0-ubuntu20.04-py38-cpu:1
+    depends_on:
+      - data_prep
+
+  evaluate:
+    type: command
+    code: .
+    command: python evaluate.py
+    environment: azureml:AzureML-sklearn-1.0-ubuntu20.04-py38-cpu:1
+    depends_on:
+      - train
