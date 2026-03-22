@@ -7,15 +7,12 @@ import joblib
 
 print("Name : Raghini H | RollNo: 727823TUAM037 | Timestamp:", datetime.now())
 
-# Load model & test data
 model = joblib.load("outputs/model.pkl")
 X_test = pd.read_csv("outputs/X_test.csv")
 y_test = pd.read_csv("outputs/y_test.csv")
 
-# Predictions
 y_pred = model.predict(X_test)
 
-# Metrics
 accuracy = accuracy_score(y_test, y_pred)
 precision = precision_score(y_test, y_pred, zero_division=0)
 recall = recall_score(y_test, y_pred, zero_division=0)
