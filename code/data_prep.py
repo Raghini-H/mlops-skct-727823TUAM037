@@ -9,10 +9,11 @@ import os
 
 print("Name : Raghini H | RollNo: 727823TUAM037 | Timestamp:", datetime.now())
 
-data = pd.read_csv("data/secom.data", sep=" ", header=None)
-labels = pd.read_csv("data/secom_labels.data", sep=" ", header=None)
+data = pd.read_csv(r"C:\College\Semester 6\MLOPS\Assignment\ML\data\secom.data", sep=r'\s+', header=None)
+labels = pd.read_csv(r"C:\College\Semester 6\MLOPS\Assignment\ML\data\secom_labels.data", sep=r'\s+', header=None)
 
 data['label'] = labels[0]
+data.columns = data.columns.astype(str)
 
 imputer = SimpleImputer(strategy='mean')
 data_imputed = imputer.fit_transform(data)
